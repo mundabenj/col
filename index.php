@@ -1,4 +1,10 @@
 <?php
-print "<h1>Hello, BBIT E!</h1>";
-print "<p> Today is " . date("l") . "</p>";
-print "<p>Lets learn PHP!</p>";
+//include the class file
+require 'classes.php';
+
+//create an instance of the class
+$page = new structure();
+
+//call the methods
+$page->heading();
+$page->footer();
