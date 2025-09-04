@@ -1,5 +1,5 @@
 <?php
-class structure {
+class layouts {
     public function heading() {
         print "<h1>Welcome to BBIT E</h1>";
     }
