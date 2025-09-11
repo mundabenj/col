@@ -18,6 +18,6 @@ $conf['db_name'] = "col";
 $conf['mail_type'] = "smtp"; // options: smtp, sendmail, mail
 $conf['smtp_host'] = "smtp.gmail.com";
 $conf['smtp_user'] = "bbitalex@gmail.com";
-$conf['smtp_pass'] = "onoz brbe rdec xzwy";
+$conf['smtp_pass'] = "";
 $conf['smtp_port'] = 465;
 $conf['smtp_secure'] = "ssl"; // options: ssl, tls
