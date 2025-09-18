@@ -1,6 +1,15 @@
 <?php
 class auth{
-    public function signup($conf, $ObjFncs){
+
+    // method to bind email template variables
+    private function bindEmailVars($template, $variables) {
+        foreach ($variables as $key => $value) {
+            $template = str_replace('{{' . $key . '}}', $value, $template);
+        }
+        return $template;
+    }
+
+    public function signup($conf, $ObjFncs, $lang, $ObjSendMail) {
         // signup logic here
         if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['signup'])) {
 
@@ -41,6 +50,24 @@ class auth{
 
             if(!count($errors)) {
                 // die($fullname . " " . $email . " " . $password);
+
+                // Send verification email
+                $EmailVariables = [
+                    'site_name' => $conf['site_name'],
+                    'fullname' => $fullname,
+                    'activation_code' => rand(100000, 999999) // In real applications, generate a secure activation code
+                ];
+
+                $mailCnt = [
+                    'name_from' => $conf['site_name'],
+                    'mail_from' => $conf['site_email'],
+                    'name_to' => $fullname,
+                    'mail_to' => $email,
+                    'subject' => $this->bindEmailVars($lang['reg_ver_subject'], $EmailVariables),
+                    'body' => nl2br($this->bindEmailVars($lang['reg_ver_body'], $EmailVariables))
+                ];
+
+                 $ObjSendMail->Send_Mail($conf, $mailCnt); // send the email
 
                 // Clear session data after successful signup
                 unset($_SESSION['fullname']);

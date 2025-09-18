@@ -1,7 +1,6 @@
 <?php
 
-//Load Composer's autoloader (created by composer, not included with PHPMailer)
-require 'Plugins/PHPMailer/vendor/autoload.php';
+
 require 'conf.php';
 
 // autoload classes from specified directories
@@ -24,4 +23,4 @@ $ObjForms = new forms();
 $ObjAuth = new auth();
 $ObjFncs = new fncs();
 
-$ObjAuth->signup($conf, $ObjFncs);
+$ObjAuth->signup($conf, $ObjFncs, $lang, $ObjSendMail);

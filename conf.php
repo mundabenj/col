@@ -12,7 +12,7 @@ $conf['site_email'] = "admin@bbite.com";
 
 // Site Language
 $conf['site_lang'] = "en";
-
+require "Lang/" . $conf['site_lang'] . ".php";
 // Database constants
 $conf['db_type'] = "pdo";
 $conf['db_host'] = "localhost";
@@ -23,8 +23,8 @@ $conf['db_name'] = "col";
 // Email configuration
 $conf['mail_type'] = "smtp"; // options: smtp, sendmail, mail
 $conf['smtp_host'] = "smtp.gmail.com";
-$conf['smtp_user'] = "bbitalex@gmail.com";
-$conf['smtp_pass'] = "";
+$conf['smtp_user'] = "your_email@gmail.com";
+$conf['smtp_pass'] = "yoursecretpassword"; // app password for gmail
 $conf['smtp_port'] = 465;
 $conf['smtp_secure'] = "ssl"; // options: ssl, tls
 

@@ -13,4 +13,4 @@ $mailCnt = [
 // $ObjSendMail->Send_Mail($conf, $mailCnt);
 
 
-print basename($_SERVER['PHP_SELF']);
+print rand(100000, 999999);
