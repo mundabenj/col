@@ -20,11 +20,14 @@ class forms{
   <div class="mb-3">
     <label for="email" class="form-label">Email address</label>
     <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email" placeholder="Enter your email" value="<?php echo isset($_SESSION['email']) ? $_SESSION['email'] : ''; ?>" required>
+    <?php if(isset($err['emailFormat_error'])): ?><div class="form-text text-danger"><?php echo $err['emailFormat_error']; ?></div><?php endif; ?>
+    <?php if(isset($err['emailDomain_error'])): ?><div class="form-text text-danger"><?php echo $err['emailDomain_error']; ?></div><?php endif; ?>
     <div id="emailHelp" class="form-text"></div>
   </div>
   <div class="mb-3">
     <label for="password" class="form-label">Password</label>
     <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" value="<?php echo isset($_SESSION['password']) ? $_SESSION['password'] : ''; ?>" required>
+    <?php if(isset($err['passwordLength_error'])): ?><div class="form-text text-danger"><?php echo $err['passwordLength_error']; ?></div><?php endif; ?>
     <div id="passwordHelp" class="form-text"></div>
   </div>
     <?php $this->submit_button('signup', 'Sign Up'); ?> <a>Already a member? <a href='signin.php'>Sign In here</a></a>

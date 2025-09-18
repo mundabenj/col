@@ -28,18 +28,25 @@ class auth{
                 $errors['emailFormat_error'] = "Invalid email format.";
             }
 
+            // Check for valid domain
+            $email_domain = substr(strrchr($email, "@"), 1);
+            if(!in_array($email_domain, $conf['valid_domain'])) {
+                $errors['emailDomain_error'] = "Email domain must be one of the following: " . implode(", ", $conf['valid_domain']);
+            }
+
             // Validate password (minimum 6 characters)
             if(strlen($password) < $conf['min_password_length']) {
                 $errors['passwordLength_error'] = "Password must be at least " . $conf['min_password_length'] . " characters long.";
             }
 
             if(!count($errors)) {
-                die($fullname . " " . $email . " " . $password);
+                // die($fullname . " " . $email . " " . $password);
 
                 // Clear session data after successful signup
                 unset($_SESSION['fullname']);
                 unset($_SESSION['email']);
                 unset($_SESSION['password']);
+                $ObjFncs->setMsg('msg', 'Signup successful! Please check your email for verification.', 'success');
             } else {
                 $ObjFncs->setMsg('errors', $errors, 'danger');
                 $ObjFncs->setMsg('msg', 'Please correct the errors and try again.', 'warning');

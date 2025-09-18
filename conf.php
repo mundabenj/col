@@ -28,6 +28,8 @@ $conf['smtp_pass'] = "";
 $conf['smtp_port'] = 465;
 $conf['smtp_secure'] = "ssl"; // options: ssl, tls
 
+// Valid domain for email addresses
+$conf['valid_domain'] = ["gmail.com", "yahoo.com", "outlook.com", "hotmail.com", "strathmore.edu"];
 
 // minimum password length
-$conf['min_password_length'] = 6;
+$conf['min_password_length'] = 3;
