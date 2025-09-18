@@ -12,6 +12,5 @@ You have requested an account on <strong>{{site_name}}</strong>.
 Your activation code is:
 <h2>{{activation_code}}</h2>
 Regards,
-System Admin,
-{{site_name}}
+{{mail_from_name}}
 ";
