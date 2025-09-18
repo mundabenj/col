@@ -1,7 +1,13 @@
 <?php
+// Create a session
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
+
 // Site Information
 $conf['site_name'] = "BBIT Enterprise";
-$conf['site_url'] = "http://localhost/col";
+$conf['site_url'] = "http://localhost/col/";
 $conf['site_email'] = "admin@bbite.com";
 
 // Site Language
@@ -21,3 +27,7 @@ $conf['smtp_user'] = "bbitalex@gmail.com";
 $conf['smtp_pass'] = "";
 $conf['smtp_port'] = 465;
 $conf['smtp_secure'] = "ssl"; // options: ssl, tls
+
+
+// minimum password length
+$conf['min_password_length'] = 6;
