@@ -11,42 +11,30 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
-// Drop table if exists
-$sql = "DROP TABLE IF EXISTS MyGuests";
-$conn->query($sql);
+// insert data into table
+// $sql = "INSERT INTO users (username, email, password) VALUES 
+// ('user1', 'user1@yahoo.com', 'user123'),
+// ('user2', 'user2@yahoo.com', 'user123')
+// ";
 
-// sql to create table
-$sql = "CREATE TABLE IF NOT EXISTS MyGuests (
-id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-firstname VARCHAR(30) NOT NULL,
-lastname VARCHAR(30) NOT NULL,
-email VARCHAR(50),
-reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-)";
+// if ($conn->query($sql) === TRUE) {
+//   echo "New record created successfully";
+// } else {
+//   echo "Error: " . $sql . "<br>" . $conn->error;
+// }
 
-if ($conn->query($sql) === TRUE) {
-  echo "Table MyGuests created successfully";
+$sql = "SELECT id, username, email, reg_date FROM users";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+  // output data of each row
+  while($row = $result->fetch_assoc()) {
+    echo "id: " . $row["id"]. " - Name: " . $row["username"]. " - Email: " . $row["email"]. " - Registered on: " . $row["reg_date"]. "<br>";
+  }
 } else {
-  echo "Error creating table: " . $conn->error;
+  echo "0 results";
 }
 
-// Drop table if exists
-$sql = "DROP TABLE IF EXISTS users";
-$conn->query($sql);
-
-// create table users
-$sql = "CREATE TABLE IF NOT EXISTS users (
-id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-username VARCHAR(30) NOT NULL,
-password VARCHAR(255) NOT NULL,
-email VARCHAR(50),
-reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-)";
-if ($conn->query($sql) === TRUE) {
-  echo "Table users created successfully";
-} else {
-  echo "Error creating table: " . $conn->error;
-}
 
 $conn->close();
 ?> 
