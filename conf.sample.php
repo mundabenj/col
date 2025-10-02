@@ -31,9 +31,9 @@ $conf['db_name'] = 'db_name'; // Database name
 $conf['db_port'] = '3306'; // Database port
 
 // Site Information
-$conf['site_name'] = 'PRO Community';
-$conf['site_initials'] = 'pro';
-$conf['site_domain'] = 'procommunity.com';
+$conf['site_name'] = "BBIT Enterprise";
+$conf['site_initials'] = 'bbite';
+$conf['site_domain'] = 'bbitenterprise.com';
 $conf['site_slogan'] = 'Connecting Minds, Building Futures';
 $conf['site_url'] = $base_url . $conf['db_name'] . '/';
 $conf['site_title'] = $conf['site_name'] . ' - ' . $conf['site_slogan'];
