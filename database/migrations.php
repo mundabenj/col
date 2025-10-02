@@ -63,3 +63,7 @@ if ($create_genders === TRUE) {
 } else {
     echo "Error creating genders table: " . $create_genders . " | ";
 }
+
+// Alter table to add foreign key constraints
+$alter_table_user = $SQL->addConstraint('users', 'roles', 'roleId', 'CASCADE', 'CASCADE');
+$alter_table_user = $SQL->addConstraint('users', 'genders', 'genderId', 'CASCADE', 'CASCADE');
