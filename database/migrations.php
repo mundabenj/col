@@ -22,10 +22,44 @@ $create_users = $SQL->createTable('users', [
   'created' => 'TIMESTAMP DEFAULT CURRENT_TIMESTAMP',
   'updated' => 'TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP',
   'roleId' => 'tinyint(1) DEFAULT 1', // 1=User, 2=Admin
-  'gender' => 'tinyint(1) DEFAULT 1'
+  'genderId' => 'tinyint(1) DEFAULT 1'
 ]);
 if ($create_users === TRUE) {
     echo "Users table created successfully. | ";
 } else {
     echo "Error creating users table: " . $create_users . " | ";
+}
+
+// Drop roles table if it exists
+$drop_roles = $SQL->dropTable('roles');
+
+// Create roles table
+$create_roles = $SQL->createTable('roles', [
+  'roleId' => 'tinyint(1) AUTO_INCREMENT PRIMARY KEY',
+  'roleName' => 'VARCHAR(20) NOT NULL',
+  'created' => 'TIMESTAMP DEFAULT CURRENT_TIMESTAMP',
+  'updated' => 'TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'
+]);
+
+if ($create_roles === TRUE) {
+    echo "Roles table created successfully. | ";
+} else {
+    echo "Error creating roles table: " . $create_roles . " | ";
+}
+
+// Drop genders table if it exists
+$drop_genders = $SQL->dropTable('genders');
+
+// Create genders table if it doesn't exist
+$create_genders = $SQL->createTable('genders', [
+  'genderId' => 'tinyint(1) AUTO_INCREMENT PRIMARY KEY',
+  'genderName' => 'VARCHAR(20) NOT NULL',
+  'created' => 'TIMESTAMP DEFAULT CURRENT_TIMESTAMP',
+  'updated' => 'TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'
+]);
+
+if ($create_genders === TRUE) {
+    echo "Genders table created successfully. | ";
+} else {
+    echo "Error creating genders table: " . $create_genders . " | ";
 }
