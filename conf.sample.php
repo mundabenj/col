@@ -4,19 +4,31 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start(); // Start session if not already started
 }
 
+// Environment configuration
+$conf['env'] = 'development'; // Options: 'development' or 'production'
+
 // Set timezone
 date_default_timezone_set('Africa/Nairobi'); // Change to your timezone
 
-// Set base URL dynamically
-$protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
-$base_url = $protocol . $_SERVER['HTTP_HOST'] . '/';
+if($conf['env'] === 'production'){
+    // Set base URL dynamically
+    $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+    $base_url = $protocol . $_SERVER['HTTP_HOST'] . '/';
+    error_reporting(0); // Disable error reporting in production
+} else {
+    error_reporting(E_ALL); // Enable all error reporting in development
+    ini_set('display_errors', 1); // Display errors in development
+    // Set base URL dynamically
+    $base_url = 'http://localhost/'; // Change to your local development URL
+}
+
 
 // Database Configuration
 $conf['db_type'] = 'pdo'; // Options: 'mysqli' or 'pdo'
 $conf['db_host'] = 'localhost'; // Use 'localhost' for local development
 $conf['db_user'] = 'db_user'; // Use 'root' for local development
 $conf['db_pass'] = 'db_pass';  // Use '' for local development
-$conf['db_name'] = 'db_name'; // Database name
+$conf['db_name'] = 'col'; // Database name
 
 // Site Information
 $conf['site_name'] = "BBIT Enterprise";
