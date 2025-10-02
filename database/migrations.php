@@ -1,40 +1,31 @@
- <?php
-$servername = "localhost";
-$username = "root";
-$password = "alex";
-$dbname = "col";
+<?php
+require_once '../ClassAutoLoad.php';
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
-if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
-}
-
-// insert data into table
-// $sql = "INSERT INTO users (username, email, password) VALUES 
-// ('user1', 'user1@yahoo.com', 'user123'),
-// ('user2', 'user2@yahoo.com', 'user123')
-// ";
-
-// if ($conn->query($sql) === TRUE) {
-//   echo "New record created successfully";
-// } else {
-//   echo "Error: " . $sql . "<br>" . $conn->error;
-// }
-
-$sql = "SELECT id, username, email, reg_date FROM users";
-$result = $conn->query($sql);
-
-if ($result->num_rows > 0) {
-  // output data of each row
-  while($row = $result->fetch_assoc()) {
-    echo "id: " . $row["id"]. " - Name: " . $row["username"]. " - Email: " . $row["email"]. " - Registered on: " . $row["reg_date"]. "<br>";
-  }
+// Drop users table if it exists
+$drop_users = $SQL->dropTable('users');
+if ($drop_users === TRUE) {
+    echo "Existing 'users' table dropped successfully.<br>";
 } else {
-  echo "0 results";
+    echo "Error dropping 'users' table: " . $drop_users . " | ";
 }
 
-
-$conn->close();
-?> 
+// Create users table
+$create_users = $SQL->createTable('users', [
+  'userId' => 'BIGINT(10) AUTO_INCREMENT PRIMARY KEY',
+  'fullname' => 'VARCHAR(50) NOT NULL',
+  'email' => 'VARCHAR(50) NOT NULL UNIQUE',
+  'password' => 'VARCHAR(60) NOT NULL',
+  'verify_code' => 'VARCHAR(10) DEFAULT NULL',
+  'code_expiry_time' => 'DATETIME DEFAULT NULL',
+  'mustchange' => 'tinyint(1) DEFAULT 0',
+  'status' => "ENUM('active', 'inactive', 'suspended', 'Pending', 'Deleted') DEFAULT 'Pending'",
+  'created' => 'TIMESTAMP DEFAULT CURRENT_TIMESTAMP',
+  'updated' => 'TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP',
+  'roleId' => 'tinyint(1) DEFAULT 1', // 1=User, 2=Admin
+  'gender' => 'tinyint(1) DEFAULT 1'
+]);
+if ($create_users === TRUE) {
+    echo "Users table created successfully. | ";
+} else {
+    echo "Error creating users table: " . $create_users . " | ";
+}
