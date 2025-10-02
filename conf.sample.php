@@ -1,4 +1,5 @@
 <?php
+// Start the session
 if (session_status() == PHP_SESSION_NONE) {
     session_start(); // Start session if not already started
 }
@@ -24,15 +25,15 @@ if($conf['env'] == 'production'){
 // Database Configuration
 $conf['db_type'] = 'PDO'; // Options: 'MySQLi' or 'PDO'
 $conf['db_host'] = 'localhost'; // Use 'localhost' for local development
-$conf['db_user'] = 'root'; // Use 'root' for local development
-$conf['db_pass'] = 'alex';  // Use '' for local development
-$conf['db_name'] = 'nol'; // Database name
+$conf['db_user'] = 'db_user'; // Use 'root' for local development
+$conf['db_pass'] = 'db_pass';  // Use '' for local development
+$conf['db_name'] = 'db_name'; // Database name
 $conf['db_port'] = '3306'; // Database port
 
 // Site Information
-$conf['site_name'] = 'ICS Community';
-$conf['site_initials'] = 'ics';
-$conf['site_domain'] = 'icscommunity.com';
+$conf['site_name'] = 'BBIT Enterprise';
+$conf['site_initials'] = 'bbit';
+$conf['site_domain'] = 'bbitenterprise.com';
 $conf['site_slogan'] = 'Connecting Minds, Building Futures';
 $conf['site_url'] = $base_url . $conf['db_name'] . '/';
 $conf['site_title'] = $conf['site_name'] . ' - ' . $conf['site_slogan'];
@@ -48,8 +49,8 @@ require_once __DIR__ . "/Lang/" . $conf['site_lang'] . ".php"; // Include langua
 // Email Configuration
 $conf['mail_type'] = 'smtp'; // Options: 'smtp' or 'mail'
 $conf['smtp_host'] = 'smtp.gmail.com'; // For Gmail SMTP
-$conf['smtp_user'] = 'bbitalex@gmail.com'; // Your email address
-$conf['smtp_pass'] = 'iasz uchi uhqq mesg '; // Use App Password if 2FA is enabled
+$conf['smtp_user'] = 'example@gmail.com'; // Your email address
+$conf['smtp_pass'] = 'secretpassword'; // Use App Password if 2FA is enabled
 $conf['smtp_port'] = 465; // For SSL
 $conf['smtp_secure'] = 'ssl'; // Options: 'ssl' or 'tls'
 $conf['mail_from'] = 'no-reply@' . $conf['site_domain'];

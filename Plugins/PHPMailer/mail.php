@@ -18,12 +18,12 @@ try {
     $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
     $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
     $mail->Username   = 'bbitalex@gmail.com';                     //SMTP username
-    $mail->Password   = 'onoz brbe rdec xzwy';                               //SMTP password
+    $mail->Password   = '';                               //SMTP password
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
     $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
     //Recipients
-    $mail->setFrom('noreply@bbit.com', 'Systems Admin');
+    $mail->setFrom('BMundama@strathmore.edu', 'Alex Mundama');
     $mail->addAddress('mazziqstudios@gmail.com', 'Mazziq Studios');     //Add a recipient
     // $mail->addAddress('ellen@example.com');               //Name is optional
     // $mail->addReplyTo('info@example.com', 'Information');
@@ -36,8 +36,8 @@ try {
 
     //Content
     $mail->isHTML(true);                                  //Set email format to HTML
-    $mail->Subject = 'Welcome to BBIT Enterprise';
-    $mail->Body    = 'This is a new semester <b>Let\'s get started!</b>';
+    $mail->Subject = 'Welcome to ICS A Academy';
+    $mail->Body    = 'This is a new semester, <b>let\'s make it great!</b>';
     // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
     $mail->send();
