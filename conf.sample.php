@@ -14,9 +14,9 @@ $base_url = $protocol . $_SERVER['HTTP_HOST'] . '/';
 // Database Configuration
 $conf['db_type'] = 'pdo'; // Options: 'mysqli' or 'pdo'
 $conf['db_host'] = 'localhost'; // Use 'localhost' for local development
-$conf['db_user'] = 'root'; // Use 'root' for local development
-$conf['db_pass'] = '';  // Use '' for local development
-$conf['db_name'] = 'col'; // Database name
+$conf['db_user'] = 'db_user'; // Use 'root' for local development
+$conf['db_pass'] = 'db_pass';  // Use '' for local development
+$conf['db_name'] = 'db_name'; // Database name
 
 // Site Information
 $conf['site_name'] = "BBIT Enterprise";
