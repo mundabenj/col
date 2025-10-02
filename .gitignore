@@ -1,0 +1,10 @@
+# # Ignore all .log files
+# *.log
+# # Ignore all .tmp files
+# *.tmp
+# # Ignore these folders
+# cache/
+# videos/
+
+# Ignore configuration files
+conf.php
